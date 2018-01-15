@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.API_KEY;
 import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.BASE_URL;
+import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.IMAGE_BASE_URL;
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -21,7 +22,7 @@ public final class NetworkUtils {
 
     public final static class APIConstants {
         public static final String BASE_URL = "api.themoviedb.org";
-        public static final String API_KEY = "add_api_here";
+        public static final String API_KEY = "add_api_key";
         public final static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
         public static final String IMAGE_SIZE = "w185";
     }
@@ -61,5 +62,20 @@ public final class NetworkUtils {
         } finally {
             urlConnection.disconnect();
         }
+    }
+
+    public static URL buildPosteUrl (String posterPath) {
+        Uri.Builder posterBuild  = new Uri.Builder();
+            posterBuild.scheme("http")
+                    .authority(IMAGE_BASE_URL)
+                    .appendPath(posterPath);
+
+        URL url = null;
+        try {
+            url = new URL(posterBuild.build().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }
