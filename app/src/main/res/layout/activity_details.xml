@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150sp"
+    android:background="#ffff00"
+    android:id="@+id/header">
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Movie"
+        android:textSize="35sp"
+        android:paddingLeft="10sp"/>
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="25sp">
+
+        <ImageView
+            android:id="@+id/movie_image"
+            android:layout_width="300px"
+            android:layout_height="430px"
+            android:background="#ff00ff" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/movie_image"
+            android:layout_weight="1"
+            android:text="22-12-2016"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/release_date"
+            android:layout_toRightOf="@+id/movie_image"
+            android:layout_weight="1"
+            android:text="120min"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/time"
+            android:layout_toRightOf="@+id/movie_image"
+            android:layout_weight="1"
+            android:text="8.1/10"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/sinopse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_image"
+            android:text="Esse texto é um placeholder da sinopse"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+</FrameLayout>
