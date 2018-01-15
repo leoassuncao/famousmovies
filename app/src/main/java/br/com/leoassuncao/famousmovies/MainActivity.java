@@ -1,13 +1,14 @@
 package br.com.leoassuncao.famousmovies;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
+import br.com.leoassuncao.famousmovies.Data.Movie;
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         mMoviesList = (RecyclerView) findViewById(R.id.rv_movies);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mMoviesList.setLayoutManager(layoutManager);
         mMoviesList.setHasFixedSize(true);
     }
@@ -38,13 +39,29 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_popularity:
-                return true;
+                setPopularMovies();
 
             case R.id.action_rating:
-                return true;
+                setTopRatedMovies();
 
             default:
+                setTopRatedMovies();
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void setTopRatedMovies() {
+        MoviesAdapter moviesAdapter = new MoviesAdapter();
+        FetchMovies movies = new FetchMovies(moviesAdapter);
+        mMoviesList.setAdapter(moviesAdapter);
+        movies.execute("top_rated");
+    }
+
+
+    public void setPopularMovies() {
+        MoviesAdapter moviesAdapter = new MoviesAdapter();
+        FetchMovies moviesTask = new FetchMovies(moviesAdapter);
+        mMoviesList.setAdapter(moviesAdapter);
+        moviesTask.execute("popular");
     }
 }

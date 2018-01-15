@@ -24,7 +24,7 @@ public final class NetworkUtils {
     public final static class APIConstants {
         public static final String BASE_URL = "api.themoviedb.org";
         public static final String API_KEY = "331f086d764c674f62af6a6c14de7f26";
-        public final static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
+        public final static String IMAGE_BASE_URL = "image.tmdb.org/t/p/";
         public static final String IMAGE_SIZE = "w185";
     }
 
@@ -36,7 +36,7 @@ public final class NetworkUtils {
                 .appendPath("3")
                 .appendPath("movie")
                 .appendPath(filter)
-                .appendQueryParameter(API_KEY, apiKey);
+                .appendQueryParameter("api_key", API_KEY);
         URL url = null;
         try {
             url = new URL(builder.build().toString());
@@ -65,19 +65,7 @@ public final class NetworkUtils {
         }
     }
 
-    public static URL buildPosteUrl (String posterPath) {
-        Uri.Builder posterBuild  = new Uri.Builder();
-            posterBuild.scheme("http")
-                    .authority(IMAGE_BASE_URL)
-                    .appendPath(IMAGE_SIZE)
-                    .appendPath(posterPath);
-
-        URL url = null;
-        try {
-            url = new URL(posterBuild.build().toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return url;
+    public static String buildPosterUrl (String posterPath) {
+        return "http://image.tmdb.org/t/p/w185/" + posterPath;
     }
 }
