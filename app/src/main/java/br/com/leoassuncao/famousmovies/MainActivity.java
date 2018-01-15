@@ -27,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mMoviesList.setLayoutManager(layoutManager);
         mMoviesList.setHasFixedSize(true);
+
+        if (savedInstanceState == null) {
+            setPopularMovies();
+        } else {
+            setTopRatedMovies();
+
+        }
     }
 
     @Override
@@ -36,19 +43,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_popularity:
-                setPopularMovies();
-
-            case R.id.action_rating:
-                setTopRatedMovies();
-
-            default:
-                setTopRatedMovies();
-                return super.onOptionsItemSelected(item);
-        }
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("optionSelected", R.id.action_rating);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_popularity) {
+            setPopularMovies();
+        }
+        if (item.getItemId() == R.id.action_rating) {
+            setTopRatedMovies();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
 
     public void setTopRatedMovies() {
         MoviesAdapter moviesAdapter = new MoviesAdapter();
