@@ -21,7 +21,7 @@ public final class NetworkUtils {
 
     public final static class APIConstants {
         public static final String BASE_URL = "api.themoviedb.org";
-        public static final String API_KEY = "331f086d764c674f62af6a6c14de7f26";
+        public static final String API_KEY = "add_api_here";
         public final static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
         public static final String IMAGE_SIZE = "w185";
     }
