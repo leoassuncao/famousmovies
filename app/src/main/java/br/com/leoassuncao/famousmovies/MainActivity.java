@@ -75,4 +75,6 @@ public class MainActivity extends AppCompatActivity {
         mMoviesList.setAdapter(moviesAdapter);
         moviesTask.execute("popular");
     }
+
+
 }
