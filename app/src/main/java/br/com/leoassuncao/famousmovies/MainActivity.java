@@ -1,14 +1,21 @@
 package br.com.leoassuncao.famousmovies;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+
 
 import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
-import br.com.leoassuncao.famousmovies.Data.Movie;
+
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -17,6 +24,8 @@ import br.com.leoassuncao.famousmovies.Data.Movie;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mMoviesList;
+    private Snackbar mSnackbar;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +37,19 @@ public class MainActivity extends AppCompatActivity {
         mMoviesList.setLayoutManager(layoutManager);
         mMoviesList.setHasFixedSize(true);
 
-        if (savedInstanceState == null) {
-            setPopularMovies();
+        boolean IsConnected = checkConnection();
+        if (!IsConnected) {
+            showError();
         } else {
-            setTopRatedMovies();
+            if (savedInstanceState == null) {
+                setPopularMovies();
+            } else {
+                setTopRatedMovies();
 
+
+            }
         }
+
     }
 
     @Override
@@ -51,10 +67,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_popularity) {
-            setPopularMovies();
+            boolean IsConnected = checkConnection();
+            if (!IsConnected) {
+                showError();
+            } else {
+                setPopularMovies();
+            }
         }
         if (item.getItemId() == R.id.action_rating) {
-            setTopRatedMovies();
+            boolean IsConnected = checkConnection();
+            if (!IsConnected) {
+                showError();
+            } else {
+                setTopRatedMovies();
+            }
         }
         return super.onOptionsItemSelected(item);
 
@@ -76,5 +102,16 @@ public class MainActivity extends AppCompatActivity {
         moviesTask.execute("popular");
     }
 
+
+    boolean checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
+    }
+
+    private void showError() {
+        mSnackbar.make(findViewById(R.id.cl_main_activity), R.string.connection_error, Snackbar.LENGTH_LONG).show();
+    }
 
 }
