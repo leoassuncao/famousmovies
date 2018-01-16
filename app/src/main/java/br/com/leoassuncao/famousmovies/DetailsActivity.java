@@ -50,8 +50,10 @@ public class DetailsActivity extends AppCompatActivity {
     private void setMovie(Movie movie) {
         Picasso.with(movie_image.getContext())
                 .load(NetworkUtils.buildPosterUrl(movie.getPosterPath()))
+                .fit().centerCrop()
                 .placeholder(R.drawable.placeholder_poster)
                 .into(movie_image);
+
         movie_title.setText(movie.getTitle());
         release_date.setText(movie.getReleaseDate());
         sinopse.setText(movie.getOverview());

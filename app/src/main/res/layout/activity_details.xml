@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,82 +20,92 @@
 
     </android.support.design.widget.AppBarLayout>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="115sp"
-    android:background="@color/colorAccent"
-    android:id="@+id/header">
-
-    <TextView
-        android:id="@+id/movie_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="Movie"
-        android:textSize="25sp"
-        android:paddingLeft="10sp"
-        android:textColor="@android:color/white"/>
-
-</LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/bottom"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="25sp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/movie_image"
-            android:layout_width="165sp"
-            android:layout_height="250sp"
-            android:layout_marginLeft="10sp"
-            />
 
-        <TextView
-            android:id="@+id/release_date"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/movie_image"
-            android:layout_weight="1"
-            android:text="22-12-2016"
-            android:textSize="22sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginLeft="10sp"/>
+            android:orientation="vertical">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="115sp"
+                android:background="@color/colorAccent">
+
+                <TextView
+                    android:id="@+id/movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10sp"
+                    android:text="Movie"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="25sp">
+
+                <ImageView
+                    android:id="@+id/movie_image"
+                    android:layout_width="165sp"
+                    android:layout_height="250sp"
+                    android:layout_marginLeft="10sp" />
+
+                <TextView
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_toRightOf="@+id/movie_image"
+                    android:layout_weight="1"
+                    android:text="22-12-2016"
+                    android:textSize="22sp" />
 
 
-        <TextView
-            android:id="@+id/rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/release_date"
-            android:layout_toRightOf="@+id/movie_image"
-            android:text="8.1/10"
-            android:textSize="17sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginLeft="10sp"/>
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/release_date"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_toRightOf="@+id/movie_image"
+                    android:text="8.1/10"
+                    android:textSize="17sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sinopse_title"
-            android:text="@string/sinopse_title"
-            android:layout_below="@+id/movie_image"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10sp"
-            android:layout_marginLeft="10sp"/>
+                <TextView
+                    android:id="@+id/sinopse_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_image"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="10sp"
+                    android:text="@string/sinopse_title"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/sinopse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sinopse_title"
-            android:text="Esse texto é um placeholder da sinopse"
-            android:textSize="18sp"
-            android:layout_marginTop="7sp"
-            android:layout_marginLeft="10sp"/>
+                <TextView
+                    android:id="@+id/sinopse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sinopse_title"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="7sp"
+                    android:text="Esse texto é um placeholder da sinopse"
+                    android:textSize="18sp" />
 
-    </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
