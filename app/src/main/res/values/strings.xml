@@ -3,4 +3,5 @@
     <string name="most_popular_movies">Sort by Popularity</string>
     <string name="most_rating_movies">Sort by Rating</string>
     <string name="activity_details">Movie Details</string>
+    <string name="sinopse_title">Synopsis</string>
 </resources>

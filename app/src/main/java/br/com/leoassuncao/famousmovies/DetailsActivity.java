@@ -55,7 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         movie_title.setText(movie.getTitle());
         release_date.setText(movie.getReleaseDate());
         sinopse.setText(movie.getOverview());
-        rating.setText(String.valueOf(movie.getVoteAverage()));
+        rating.setText(String.valueOf(movie.getVoteAverage()) + "/10");
 
     }
 
