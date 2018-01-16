@@ -5,4 +5,8 @@
     <string name="activity_details">Movie Details</string>
     <string name="sinopse_title">Synopsis</string>
     <string name="connection_error">Connection Error</string>
+    <string name="sinopse_placeholder">This is a synopsys placeholder</string>
+    <string name="movie_title_placeholder">Movie Title</string>
+    <string name="rating_placeholder">8.1/10</string>
+    <string name="date_placeholder">22-10-2012</string>
 </resources>

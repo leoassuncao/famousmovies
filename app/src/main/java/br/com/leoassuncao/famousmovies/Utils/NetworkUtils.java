@@ -10,10 +10,11 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
 
+import br.com.leoassuncao.famousmovies.BuildConfig;
+
 import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.API_KEY;
 import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.BASE_URL;
-import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.IMAGE_BASE_URL;
-import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.IMAGE_SIZE;
+
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -23,13 +24,11 @@ public final class NetworkUtils {
 
     public final static class APIConstants {
         public static final String BASE_URL = "api.themoviedb.org";
-        public static final String API_KEY = "331f086d764c674f62af6a6c14de7f26";
-        public final static String IMAGE_BASE_URL = "image.tmdb.org/t/p/";
-        public static final String IMAGE_SIZE = "w185";
+        public static final String API_KEY = BuildConfig.API_KEY;
     }
 
 
-    public static URL buildUrl(String apiKey, String filter) {
+    public static URL buildUrl(String api_key, String filter) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
                 .authority(BASE_URL)
