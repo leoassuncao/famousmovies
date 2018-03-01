@@ -33,12 +33,12 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        movie_image = (ImageView) findViewById(R.id.movie_image);
-        movie_title = (TextView) findViewById(R.id.movie_title);
-        release_date = (TextView) findViewById(R.id.release_date);
-        rating = (TextView) findViewById(R.id.rating);
-        sinopse = (TextView) findViewById(R.id.sinopse);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        movie_image = findViewById(R.id.movie_image);
+        movie_title = findViewById(R.id.movie_title);
+        release_date = findViewById(R.id.release_date);
+        rating = findViewById(R.id.rating);
+        sinopse = findViewById(R.id.sinopse);
+        toolbar = findViewById(R.id.toolbar);
 
         setToolbar();
 

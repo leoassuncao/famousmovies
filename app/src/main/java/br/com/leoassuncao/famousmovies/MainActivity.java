@@ -10,12 +10,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-
 
 import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
-
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -26,12 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mMoviesList;
     private Snackbar mSnackbar;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMoviesList = (RecyclerView) findViewById(R.id.rv_movies);
+        mMoviesList = findViewById(R.id.rv_movies);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mMoviesList.setLayoutManager(layoutManager);
@@ -45,11 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 setPopularMovies();
             } else {
                 setTopRatedMovies();
-
-
             }
         }
-
     }
 
     @Override
@@ -111,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showError() {
-        mSnackbar.make(findViewById(R.id.cl_main_activity), R.string.connection_error, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.cl_main_activity), R.string.connection_error, Snackbar.LENGTH_LONG).show();
     }
-
 }

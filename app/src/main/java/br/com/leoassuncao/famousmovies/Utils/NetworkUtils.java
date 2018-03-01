@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -64,7 +63,30 @@ public final class NetworkUtils {
         }
     }
 
-    public static String buildPosterUrl (String posterPath) {
+    public static String buildPosterUrl(String posterPath) {
         return "http://image.tmdb.org/t/p/w500/" + posterPath;
+    }
+
+    public static URL buildTrailersAndReviewsUrl(String apiKey, String id, String trailerAndReview) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority(BASE_URL)
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(id)
+                .appendPath(trailerAndReview)
+                .appendQueryParameter("api_key", API_KEY);
+        URL url = null;
+        try {
+            url = new URL(builder.build().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static String buildYoutubeUrl (String key) {
+        String url = "https://www.youtube.com/watch?v=";
+        return url + key;
     }
 }
