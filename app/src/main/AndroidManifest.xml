@@ -24,6 +24,11 @@
             android:name=".DetailsActivity"
             android:label="@string/activity_details"
             />
+
+        <provider
+            android:authorities="br.com.leoassuncao.famousmovies"
+            android:name="br.com.leoassuncao.famousmovies.Data.MoviesContentProvider"
+            android:exported="false" />
     </application>
 
 </manifest>

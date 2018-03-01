@@ -2,6 +2,7 @@
     <string name="app_name">FamousMovies</string>
     <string name="most_popular_movies">Sort by Popularity</string>
     <string name="most_rating_movies">Sort by Rating</string>
+    <string name="favorites">Sort by Favorites</string>
     <string name="activity_details">Movie Details</string>
     <string name="sinopse_title">Synopsis</string>
     <string name="connection_error">Connection Error</string>
@@ -9,4 +10,5 @@
     <string name="movie_title_placeholder">Movie Title</string>
     <string name="rating_placeholder">8.1/10</string>
     <string name="date_placeholder">22-10-2012</string>
+    <string name="mark_favorite">Mark as Favorite</string>
 </resources>

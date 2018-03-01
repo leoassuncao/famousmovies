@@ -11,7 +11,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+
+import br.com.leoassuncao.famousmovies.Adapter.FavoriteAdapter;
 import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
+import br.com.leoassuncao.famousmovies.Data.FavoriteCursorLoader;
+
 
 /**
  * Created by leonardo.filho on 12/01/2018.
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mMoviesList;
     private Snackbar mSnackbar;
+    public static final int ID_FAVORITES_LOADER = 11;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
                 setTopRatedMovies();
             }
         }
+        if(item.getItemId() == R.id.action_favorites) {
+            boolean IsConnected = checkConnection();
+            if(!IsConnected) {
+                showError();
+            }else {
+                setFavoriteMovies();
+            }
+        }
         return super.onOptionsItemSelected(item);
 
     }
@@ -94,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         moviesTask.execute("popular");
     }
 
+    public void setFavoriteMovies() {
+        FavoriteAdapter favoriteAdapter = new FavoriteAdapter();
+        mMoviesList.setAdapter(favoriteAdapter);
+        getSupportLoaderManager().initLoader(ID_FAVORITES_LOADER, null, new FavoriteCursorLoader(this, favoriteAdapter));
+    }
 
     boolean checkConnection() {
         ConnectivityManager cm =
