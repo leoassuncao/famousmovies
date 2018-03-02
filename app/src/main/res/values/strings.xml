@@ -11,4 +11,10 @@
     <string name="rating_placeholder">8.1/10</string>
     <string name="date_placeholder">22-10-2012</string>
     <string name="mark_favorite">Mark as Favorite</string>
+    <string name="favorite_string">Favorite</string>
+    <string name="unfavorite_string">Unfavorite</string>
+    <string name="trailer_title">Trailers</string>
+    <string name="trailer_type">Trailer</string>
+    <string name="trailer_site_youtube">YouTube</string>
+    <string name="reviews_title">Reviews</string>
 </resources>

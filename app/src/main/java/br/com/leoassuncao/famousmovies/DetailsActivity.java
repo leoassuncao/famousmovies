@@ -1,22 +1,29 @@
 package br.com.leoassuncao.famousmovies;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import br.com.leoassuncao.famousmovies.Data.Movie;
 import br.com.leoassuncao.famousmovies.Data.MoviesContract;
 import br.com.leoassuncao.famousmovies.Data.MoviesDBHelper;
+import br.com.leoassuncao.famousmovies.Data.Trailer;
+import br.com.leoassuncao.famousmovies.FetchTrailers;
 import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
 
 /**
@@ -32,6 +39,8 @@ public class DetailsActivity extends AppCompatActivity {
     TextView sinopse;
     Toolbar toolbar;
     Button favoriteButton;
+    LinearLayout linearLayoutTrailers;
+    TextView trailerTitle;
     private MoviesDBHelper dbHelper;
 
 
@@ -47,6 +56,8 @@ public class DetailsActivity extends AppCompatActivity {
         sinopse = findViewById(R.id.sinopse);
         toolbar = findViewById(R.id.toolbar);
         favoriteButton = findViewById(R.id.favorite_button);
+        linearLayoutTrailers = findViewById(R.id.layout_trailers_list);
+        trailerTitle = findViewById(R.id.trailer_title);
 
         setToolbar();
 
@@ -84,6 +95,12 @@ public class DetailsActivity extends AppCompatActivity {
         sinopse.setText(movie.getOverview());
         rating.setText(String.valueOf(movie.getVoteAverage()) + "/10");
 
+       new FetchTrailers(String.valueOf(movie.getId())) {
+            @Override
+            protected void onPostExecute(List<Trailer> trailers) {
+                addTrailers(trailers);
+            }
+        }.execute();
     }
 
     private void deleteMovieFromDb(Movie movie) {
@@ -105,10 +122,12 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void changeColorOnUnfavorite() {
         favoriteButton.setBackgroundColor(getResources().getColor(R.color.colorUnfavorite));
+        favoriteButton.setText(R.string.favorite_string);
     }
 
     private void changeColorOnFavorite() {
         favoriteButton.setBackgroundColor(getResources().getColor(R.color.colorFavorite));
+        favoriteButton.setText(R.string.unfavorite_string);
 
     }
 
@@ -130,6 +149,41 @@ public class DetailsActivity extends AppCompatActivity {
         return false;
     }
 
+
+    private void addTrailers (List<Trailer> trailers) {
+        if(trailers != null && !trailers.isEmpty()) {
+            for (Trailer trailer : trailers) {
+                if (trailer.getType().equals(getString(R.string.trailer_type)) &&
+                        trailer.getSite().equals(getString(R.string.trailer_site_youtube))) {
+                    View view = getTrailerView(trailer);
+                    linearLayoutTrailers.addView(view);
+                }
+            }
+        } else {
+            hideTrailers();
+        }
+    }
+
+    private View getTrailerView(final Trailer trailer) {
+        LayoutInflater inflater = LayoutInflater.from(DetailsActivity.this);
+        View view = inflater.inflate(R.layout.trailer_list_item, linearLayoutTrailers, false);
+        TextView trailerNameTextView = (TextView) view.findViewById(R.id.trailer_item_name);
+        trailerNameTextView.setText(trailer.getName());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(NetworkUtils.buildYoutubeUrl(trailer.getKey())));
+                startActivity(intent);
+            }
+        });
+        return view;
+    }
+
+    private void hideTrailers() {
+        trailerTitle.setVisibility(View.GONE);
+        linearLayoutTrailers.setVisibility(View.GONE);
+    }
 
     private void setToolbar() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
