@@ -68,6 +68,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
                 .into(holder.imagePoster);
     }
 
+
     @Override
     public int getItemCount() {
         return movies.size();

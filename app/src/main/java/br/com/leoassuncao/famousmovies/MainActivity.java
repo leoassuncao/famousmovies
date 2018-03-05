@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,7 +13,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 
 
 import br.com.leoassuncao.famousmovies.Adapter.FavoriteAdapter;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int ID_FAVORITES_LOADER = 11;
     private int optionSelected = -1 ;
     private final static String MENU_SELECTED = "selected";
+    private Parcelable listState;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mMoviesList = findViewById(R.id.rv_movies);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, numberOfColumns());
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mMoviesList.setLayoutManager(layoutManager);
         mMoviesList.setHasFixedSize(true);
 
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if (savedInstanceState != null) {
                optionSelected = savedInstanceState.getInt(MENU_SELECTED);
+                listState = savedInstanceState.getParcelable("ListState");
             }
         }
     }
@@ -76,12 +79,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(MENU_SELECTED , optionSelected);
+        savedInstanceState.putParcelable("ListState", mMoviesList.getLayoutManager().onSaveInstanceState());
         super.onSaveInstanceState(savedInstanceState);
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         FetchMovies movies = new FetchMovies(moviesAdapter);
         mMoviesList.setAdapter(moviesAdapter);
         movies.execute("top_rated");
+        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
     }
 
 
@@ -127,12 +135,14 @@ public class MainActivity extends AppCompatActivity {
         FetchMovies moviesTask = new FetchMovies(moviesAdapter);
         mMoviesList.setAdapter(moviesAdapter);
         moviesTask.execute("popular");
+        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
     }
 
     public void setFavoriteMovies() {
         FavoriteAdapter favoriteAdapter = new FavoriteAdapter();
         mMoviesList.setAdapter(favoriteAdapter);
         getSupportLoaderManager().initLoader(ID_FAVORITES_LOADER, null, new FavoriteCursorLoader(this, favoriteAdapter));
+        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
     }
 
     boolean checkConnection() {
@@ -146,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.cl_main_activity), R.string.connection_error, Snackbar.LENGTH_LONG).show();
     }
 
-    private int numberOfColumns() {
+  /*  private int numberOfColumns() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         // You can change this divider to adjust the size of the poster
@@ -155,5 +165,5 @@ public class MainActivity extends AppCompatActivity {
         int nColumns = width / widthDivider;
         if (nColumns < 2) return 2;
         return nColumns;
-    }
+    } */
 }
