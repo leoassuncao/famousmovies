@@ -6,4 +6,5 @@
 
     <color name="colorFavorite">#00c853</color>
     <color name="colorUnfavorite">#69f0ae</color>
+    <color name="colorGrey">#eee</color>
 </resources>

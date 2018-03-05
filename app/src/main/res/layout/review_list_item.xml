@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:background="@color/colorSoftGrey"
+    android:background="@color/colorGrey"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/text_content_review"
+        android:id="@+id/content_review"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         tools:text="This movie is amazing! I recommend it!" />
 
     <TextView
-        android:id="@+id/text_author_review"
+        android:id="@+id/author_review"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

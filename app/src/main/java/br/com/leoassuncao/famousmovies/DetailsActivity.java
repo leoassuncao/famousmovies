@@ -17,13 +17,16 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import br.com.leoassuncao.famousmovies.Data.Movie;
 import br.com.leoassuncao.famousmovies.Data.MoviesContract;
 import br.com.leoassuncao.famousmovies.Data.MoviesDBHelper;
+import br.com.leoassuncao.famousmovies.Data.Review;
 import br.com.leoassuncao.famousmovies.Data.Trailer;
-import br.com.leoassuncao.famousmovies.FetchTrailers;
+
 import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
 
 /**
@@ -40,7 +43,9 @@ public class DetailsActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button favoriteButton;
     LinearLayout linearLayoutTrailers;
+    LinearLayout linearLayoutReviews;
     TextView trailerTitle;
+    TextView reviewTitle;
     private MoviesDBHelper dbHelper;
 
 
@@ -57,7 +62,9 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         favoriteButton = findViewById(R.id.favorite_button);
         linearLayoutTrailers = findViewById(R.id.layout_trailers_list);
+        linearLayoutReviews = findViewById(R.id.layout_reviews_list);
         trailerTitle = findViewById(R.id.trailer_title);
+        reviewTitle = findViewById(R.id.reviews_title);
 
         setToolbar();
 
@@ -68,6 +75,8 @@ public class DetailsActivity extends AppCompatActivity {
         dbHelper = new MoviesDBHelper(this);
         if (checkIfMovieIsInDb(movie)) {
             changeColorOnFavorite();
+        } else {
+            changeColorOnUnfavorite();
         }
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +108,14 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<Trailer> trailers) {
                 addTrailers(trailers);
+            }
+        }.execute();
+
+
+        new FetchReviews(String.valueOf(movie.getId())) {
+            @Override
+            protected void onPostExecute(List<Review> reviews) {
+                addReviews(reviews);
             }
         }.execute();
     }
@@ -164,11 +181,23 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    private void addReviews(List<Review> reviews) {
+        if (reviews != null && !reviews.isEmpty()) {
+            for (Review review : reviews) {
+                View view = getReviewView(review);
+                linearLayoutReviews.addView(view);
+            }
+        } else {
+            hideReviews();
+        }
+    }
+
+
     private View getTrailerView(final Trailer trailer) {
         LayoutInflater inflater = LayoutInflater.from(DetailsActivity.this);
         View view = inflater.inflate(R.layout.trailer_list_item, linearLayoutTrailers, false);
-        TextView trailerNameTextView = (TextView) view.findViewById(R.id.trailer_item_name);
-        trailerNameTextView.setText(trailer.getName());
+        TextView trailerNameTV = (TextView) view.findViewById(R.id.trailer_item_name);
+        trailerNameTV.setText(trailer.getName());
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,10 +209,38 @@ public class DetailsActivity extends AppCompatActivity {
         return view;
     }
 
+    private View getReviewView(final Review review) {
+        LayoutInflater inflater = LayoutInflater.from(DetailsActivity.this);
+        View view = inflater.inflate(R.layout.review_list_item, linearLayoutReviews, false);
+        TextView contentTV = view.findViewById(R.id.content_review);
+        TextView authorTV = view.findViewById(R.id.author_review);
+        authorTV.setText(review.getAuthor());
+        contentTV.setText(review.getContent());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = review.getUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        return view;
+    }
+
+
+
     private void hideTrailers() {
         trailerTitle.setVisibility(View.GONE);
         linearLayoutTrailers.setVisibility(View.GONE);
     }
+
+    private void hideReviews() {
+        reviewTitle.setVisibility(View.GONE);
+        linearLayoutTrailers.setVisibility(View.GONE);
+    }
+
+
 
     private void setToolbar() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
