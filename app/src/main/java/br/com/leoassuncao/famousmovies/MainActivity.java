@@ -9,9 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.Toast;
 
 
 import br.com.leoassuncao.famousmovies.Adapter.FavoriteAdapter;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mMoviesList;
     private Snackbar mSnackbar;
     public static final int ID_FAVORITES_LOADER = 11;
-
+    private int optionSelected = -1 ;
+    private final static String MENU_SELECTED = "selected";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
         if (!IsConnected) {
             showError();
         } else {
-            if (savedInstanceState == null) {
-                setPopularMovies();
-            } else {
-                setTopRatedMovies();
+            if (savedInstanceState != null) {
+               optionSelected = savedInstanceState.getInt(MENU_SELECTED);
             }
         }
     }
@@ -56,34 +56,56 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        if (optionSelected == -1) {
+           setPopularMovies();
+        }
+        switch (optionSelected) {
+            case R.id.action_favorites:
+                setFavoriteMovies();
+                break;
+
+            case R.id.action_popularity:
+                setPopularMovies();
+                break;
+
+            case R.id.action_rating:
+                setTopRatedMovies();
+                break;
+        }
         return true;
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("optionSelected", R.id.action_rating);
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(MENU_SELECTED , optionSelected);
+        super.onSaveInstanceState(savedInstanceState);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_popularity) {
+        int id = item.getItemId();
+        if (id == R.id.action_popularity) {
             boolean IsConnected = checkConnection();
             if (!IsConnected) {
                 showError();
             } else {
+                optionSelected = id;
                 setPopularMovies();
             }
         }
-        if (item.getItemId() == R.id.action_rating) {
+        if (id == R.id.action_rating) {
             boolean IsConnected = checkConnection();
             if (!IsConnected) {
                 showError();
             } else {
+                optionSelected = id;
                 setTopRatedMovies();
             }
         }
-        if(item.getItemId() == R.id.action_favorites) {
+        if(id == R.id.action_favorites) {
+            optionSelected = id;
                 setFavoriteMovies();
 
         }
