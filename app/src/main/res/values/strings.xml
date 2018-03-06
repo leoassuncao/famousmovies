@@ -18,6 +18,9 @@
     <string name="trailer_site_youtube">YouTube</string>
     <string name="reviews_title">Reviews</string>
     <string name="author_review">Author: </string>
+    <string name="image_arrow_description">Arrow that leads to videos</string>
+
+
 
 
 </resources>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mMoviesList;
     private Snackbar mSnackbar;
     public static final int ID_FAVORITES_LOADER = 11;
-    private int optionSelected = -1 ;
+    private int optionSelected = -1;
     private final static String MENU_SELECTED = "selected";
     private Parcelable listState;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mMoviesList = findViewById(R.id.rv_movies);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, numberOfColumns());
         mMoviesList.setLayoutManager(layoutManager);
         mMoviesList.setHasFixedSize(true);
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             showError();
         } else {
             if (savedInstanceState != null) {
-               optionSelected = savedInstanceState.getInt(MENU_SELECTED);
+                optionSelected = savedInstanceState.getInt(MENU_SELECTED);
                 listState = savedInstanceState.getParcelable("ListState");
             }
         }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         if (optionSelected == -1) {
-           setPopularMovies();
+            setPopularMovies();
         }
         switch (optionSelected) {
             case R.id.action_favorites:
@@ -82,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt(MENU_SELECTED , optionSelected);
+        savedInstanceState.putInt(MENU_SELECTED, optionSelected);
         savedInstanceState.putParcelable("ListState", mMoviesList.getLayoutManager().onSaveInstanceState());
         super.onSaveInstanceState(savedInstanceState);
 
     }
-
 
 
     @Override
@@ -111,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 setTopRatedMovies();
             }
         }
-        if(id == R.id.action_favorites) {
+        if (id == R.id.action_favorites) {
             optionSelected = id;
-                setFavoriteMovies();
+            setFavoriteMovies();
 
         }
         return super.onOptionsItemSelected(item);
@@ -156,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.cl_main_activity), R.string.connection_error, Snackbar.LENGTH_LONG).show();
     }
 
-  /*  private int numberOfColumns() {
+    private int numberOfColumns() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         // You can change this divider to adjust the size of the poster
@@ -165,5 +164,5 @@ public class MainActivity extends AppCompatActivity {
         int nColumns = width / widthDivider;
         if (nColumns < 2) return 2;
         return nColumns;
-    } */
+    }
 }
