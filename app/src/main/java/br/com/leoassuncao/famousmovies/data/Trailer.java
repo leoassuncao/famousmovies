@@ -1,5 +1,7 @@
 package br.com.leoassuncao.famousmovies.data;
 
+import com.google.gson.Gson;
+
 /**
  * Created by leonardo.filho on 01/03/2018.
  */
@@ -57,12 +59,6 @@ public class Trailer {
 
     @Override
     public String toString() {
-        return "Trailer{" +
-                "id='" + id + '\'' +
-                ", key='" + key + '\'' +
-                ", name='" + name + '\'' +
-                ", site='" + site + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return new Gson().toJson(this);
     }
 }

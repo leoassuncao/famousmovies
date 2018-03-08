@@ -1,5 +1,7 @@
 package br.com.leoassuncao.famousmovies.data;
 
+import com.google.gson.Gson;
+
 /**
  * Created by leonardo.filho on 02/03/2018.
  */
@@ -39,10 +41,6 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
-                "author='" + author + '\'' +
-                ", content='" + content + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+     return new Gson().toJson(this);
     }
 }
