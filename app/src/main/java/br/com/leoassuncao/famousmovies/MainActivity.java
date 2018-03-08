@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             setFavoriteMovies();
 
         }
+        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
         return super.onOptionsItemSelected(item);
 
     }
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         FetchMovies movies = new FetchMovies(moviesAdapter);
         mMoviesList.setAdapter(moviesAdapter);
         movies.execute("top_rated");
-        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
+
     }
 
 
@@ -134,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
         FetchMovies moviesTask = new FetchMovies(moviesAdapter);
         mMoviesList.setAdapter(moviesAdapter);
         moviesTask.execute("popular");
-        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
+
     }
 
     public void setFavoriteMovies() {
         FavoriteAdapter favoriteAdapter = new FavoriteAdapter();
         mMoviesList.setAdapter(favoriteAdapter);
         getSupportLoaderManager().initLoader(ID_FAVORITES_LOADER, null, new FavoriteCursorLoader(this, favoriteAdapter));
-        mMoviesList.getLayoutManager().onRestoreInstanceState(listState);
+       
     }
 
     boolean checkConnection() {
