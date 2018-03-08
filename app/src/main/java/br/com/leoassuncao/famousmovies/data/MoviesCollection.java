@@ -1,5 +1,7 @@
 package br.com.leoassuncao.famousmovies.data;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
@@ -19,8 +21,6 @@ public class MoviesCollection {
 
     @Override
     public String toString() {
-        return "MovieCollection{" +
-                "movies=" + movies +
-                '}';
+        return new Gson().toJson(this);
     }
 }
