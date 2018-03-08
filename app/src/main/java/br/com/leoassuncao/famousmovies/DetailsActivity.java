@@ -17,17 +17,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import br.com.leoassuncao.famousmovies.Data.Movie;
-import br.com.leoassuncao.famousmovies.Data.MoviesContract;
-import br.com.leoassuncao.famousmovies.Data.MoviesDBHelper;
-import br.com.leoassuncao.famousmovies.Data.Review;
-import br.com.leoassuncao.famousmovies.Data.Trailer;
+import br.com.leoassuncao.famousmovies.data.Movie;
+import br.com.leoassuncao.famousmovies.data.MoviesContract;
+import br.com.leoassuncao.famousmovies.data.MoviesDBHelper;
+import br.com.leoassuncao.famousmovies.data.Review;
+import br.com.leoassuncao.famousmovies.data.Trailer;
 
-import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
+import br.com.leoassuncao.famousmovies.utils.NetworkUtils;
 
 /**
  * Created by leonardo.filho on 15/01/2018.
@@ -52,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_details);
 
         movie_image = findViewById(R.id.movie_image);

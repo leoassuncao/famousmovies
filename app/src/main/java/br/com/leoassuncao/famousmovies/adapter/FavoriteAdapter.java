@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Adapter;
+package br.com.leoassuncao.famousmovies.adapter;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,11 +11,11 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import br.com.leoassuncao.famousmovies.Data.Movie;
-import br.com.leoassuncao.famousmovies.Data.MoviesContract;
+import br.com.leoassuncao.famousmovies.data.Movie;
+import br.com.leoassuncao.famousmovies.data.MoviesContract;
 import br.com.leoassuncao.famousmovies.DetailsActivity;
 import br.com.leoassuncao.famousmovies.R;
-import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
+import br.com.leoassuncao.famousmovies.utils.NetworkUtils;
 
 /**
  * Created by leonardo.filho on 01/03/2018.

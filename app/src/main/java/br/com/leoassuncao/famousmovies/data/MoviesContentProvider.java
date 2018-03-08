@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Data;
+package br.com.leoassuncao.famousmovies.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;

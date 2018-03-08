@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Data;
+package br.com.leoassuncao.famousmovies.data;
 
 /**
  * Created by leonardo.filho on 01/03/2018.

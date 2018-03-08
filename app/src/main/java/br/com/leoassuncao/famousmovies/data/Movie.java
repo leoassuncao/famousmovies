@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Data;
+package br.com.leoassuncao.famousmovies.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

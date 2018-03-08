@@ -5,10 +5,10 @@ import android.os.AsyncTask;
 import java.net.URL;
 import java.util.List;
 
-import br.com.leoassuncao.famousmovies.Data.Trailer;
-import br.com.leoassuncao.famousmovies.Data.TrailerCollection;
-import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
-import br.com.leoassuncao.famousmovies.Utils.TrailersJson;
+import br.com.leoassuncao.famousmovies.data.Trailer;
+import br.com.leoassuncao.famousmovies.data.TrailerCollection;
+import br.com.leoassuncao.famousmovies.utils.NetworkUtils;
+import br.com.leoassuncao.famousmovies.utils.TrailersJson;
 
 /**
  * Created by leonardo.filho on 01/03/2018.

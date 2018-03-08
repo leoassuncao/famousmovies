@@ -1,7 +1,6 @@
-package br.com.leoassuncao.famousmovies.Adapter;
+package br.com.leoassuncao.famousmovies.adapter;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +12,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.leoassuncao.famousmovies.Data.Movie;
+import br.com.leoassuncao.famousmovies.data.Movie;
 import br.com.leoassuncao.famousmovies.DetailsActivity;
 import br.com.leoassuncao.famousmovies.R;
-import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
+import br.com.leoassuncao.famousmovies.utils.NetworkUtils;
 
 /**
  * Created by leonardo.filho on 15/01/2018.
@@ -68,11 +67,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
                 .into(holder.imagePoster);
     }
 
-
     @Override
     public int getItemCount() {
         return movies.size();
     }
-
 
 }

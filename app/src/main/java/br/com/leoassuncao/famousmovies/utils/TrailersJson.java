@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Utils;
+package br.com.leoassuncao.famousmovies.utils;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -10,8 +10,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.leoassuncao.famousmovies.Data.Trailer;
-import br.com.leoassuncao.famousmovies.Data.TrailerCollection;
+import br.com.leoassuncao.famousmovies.data.Trailer;
+import br.com.leoassuncao.famousmovies.data.TrailerCollection;
 
 /**
  * Created by leonardo.filho on 01/03/2018.

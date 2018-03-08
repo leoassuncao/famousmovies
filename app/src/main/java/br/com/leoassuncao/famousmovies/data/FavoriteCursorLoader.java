@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Data;
+package br.com.leoassuncao.famousmovies.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +7,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
-import br.com.leoassuncao.famousmovies.Adapter.FavoriteAdapter;
+import br.com.leoassuncao.famousmovies.adapter.FavoriteAdapter;
 
 import static br.com.leoassuncao.famousmovies.MainActivity.ID_FAVORITES_LOADER;
 

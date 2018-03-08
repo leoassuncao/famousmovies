@@ -29,7 +29,7 @@
 
         <provider
             android:authorities="br.com.leoassuncao.famousmovies"
-            android:name="br.com.leoassuncao.famousmovies.Data.MoviesContentProvider"
+            android:name="br.com.leoassuncao.famousmovies.data.MoviesContentProvider"
             android:exported="false" />
     </application>
 

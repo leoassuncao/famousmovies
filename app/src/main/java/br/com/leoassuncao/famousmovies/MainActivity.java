@@ -10,15 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 
-import br.com.leoassuncao.famousmovies.Adapter.FavoriteAdapter;
-import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
-import br.com.leoassuncao.famousmovies.Data.FavoriteCursorLoader;
+import br.com.leoassuncao.famousmovies.adapter.FavoriteAdapter;
+import br.com.leoassuncao.famousmovies.adapter.MoviesAdapter;
+import br.com.leoassuncao.famousmovies.data.FavoriteCursorLoader;
 
 
 /**
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_popularity) {
             boolean IsConnected = checkConnection();
             if (!IsConnected) {
@@ -165,4 +165,5 @@ public class MainActivity extends AppCompatActivity {
         if (nColumns < 2) return 2;
         return nColumns;
     }
+
 }

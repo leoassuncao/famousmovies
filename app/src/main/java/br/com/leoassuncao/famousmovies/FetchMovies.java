@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 import java.net.URL;
 import java.util.List;
 
-import br.com.leoassuncao.famousmovies.Adapter.MoviesAdapter;
-import br.com.leoassuncao.famousmovies.Data.Movie;
-import br.com.leoassuncao.famousmovies.Data.MoviesCollection;
-import br.com.leoassuncao.famousmovies.Utils.MoviesJson;
-import br.com.leoassuncao.famousmovies.Utils.NetworkUtils;
+import br.com.leoassuncao.famousmovies.adapter.MoviesAdapter;
+import br.com.leoassuncao.famousmovies.data.Movie;
+import br.com.leoassuncao.famousmovies.data.MoviesCollection;
+import br.com.leoassuncao.famousmovies.utils.MoviesJson;
+import br.com.leoassuncao.famousmovies.utils.NetworkUtils;
 
 /**
  * Created by leonardo.filho on 15/01/2018.

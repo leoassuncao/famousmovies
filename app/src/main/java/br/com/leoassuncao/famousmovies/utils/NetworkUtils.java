@@ -1,4 +1,4 @@
-package br.com.leoassuncao.famousmovies.Utils;
+package br.com.leoassuncao.famousmovies.utils;
 
 import android.net.Uri;
 
@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 import br.com.leoassuncao.famousmovies.BuildConfig;
 
-import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.API_KEY;
-import static br.com.leoassuncao.famousmovies.Utils.NetworkUtils.APIConstants.BASE_URL;
+import static br.com.leoassuncao.famousmovies.utils.NetworkUtils.APIConstants.API_KEY;
+import static br.com.leoassuncao.famousmovies.utils.NetworkUtils.APIConstants.BASE_URL;
 
 
 /**
